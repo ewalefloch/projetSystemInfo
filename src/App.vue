@@ -1,21 +1,21 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <div>
+    <nav>
+      <router-link to="/managers">Liste des responsables</router-link>
+      <router-link to="/managers/new">Ajouter un responsable</router-link>
+    </nav>
+    <router-view></router-view>
+  </div>
 </template>
+
+<script>
+export default {
+  name: 'App'
+};
+</script>
 
 <style scoped>
 header {
@@ -43,5 +43,28 @@ header {
     place-items: flex-start;
     flex-wrap: wrap;
   }
+}
+</style>
+
+<style>
+.container {
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #007bff;
+  padding: 10px;
+  border-radius: 5px;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover {
+  text-decoration: underline;
 }
 </style>
