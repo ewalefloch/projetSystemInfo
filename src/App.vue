@@ -1,9 +1,10 @@
 <script setup>
 import Auth from './components/auth/Auth.vue';
+import Profile from './components/profile/Profile.vue';
 </script>
 
 <template>
-  <Auth />
+  <Profile />
 </template>
 
 <style>
