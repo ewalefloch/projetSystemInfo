@@ -19,10 +19,6 @@
         <label for="numberOptionalTeachingUnit">Nombre d'UE optionnelles :</label>
         <input id="numberOptionalTeachingUnit" type="number" v-model.number="form.numberOptionalTeachingUnit" required>
       </div>
-      <div>
-        <label for="responsibleId">ID du responsable :</label>
-        <input id="responsibleId" type="number" v-model.number="form.responsibleId">
-      </div>
       <button type="submit">Créer</button>
     </form>
   </div>
