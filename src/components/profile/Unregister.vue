@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import FormInput from '../auth/FormInput.vue';
+const emit = defineEmits(['login-success']);
 
 const { token } = defineProps(["token"]);
 
@@ -53,6 +54,7 @@ async function sendUnregister() {
 		error.value = jsonResult["error"];
 	} else {
 		document.cookie = "token=;";
+		emit('logout-success');
 	}
 }
 </script>
