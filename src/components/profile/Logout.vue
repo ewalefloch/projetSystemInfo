@@ -1,4 +1,5 @@
 <script setup>
+const emit = defineEmits(['login-success']);
 const { token } = defineProps(["token"]);
 
 async function sendLogout() {
@@ -8,6 +9,7 @@ async function sendLogout() {
 	});
 
 	document.cookie = "token=;";
+	emit('logout-success');
 }
 </script>
 

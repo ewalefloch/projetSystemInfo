@@ -6,6 +6,7 @@ import Unregister from './Unregister.vue';
 const loading = ref(true);
 const error = ref("");
 const profile = ref(undefined);
+const emit = defineEmits(['login-success']);
 
 async function getProfile() {
 	const response = await fetch("http://localhost:8080/auth/me", {
@@ -48,6 +49,9 @@ if (token) {
 	error.value = "Vous n'êtes pas connecté.";
 	loading.value = false;
 }
+function handleLogoutSuccess() {
+    emit('logout-success');
+}
 </script>
 
 <template>
@@ -58,7 +62,7 @@ if (token) {
 		</div>
 		<div v-else class="content-container">
 			<p>Votre numéro étudiant : {{ profile["student"] }}</p>
-			<Logout :token="token" />
+			<Logout :token="token" @logout-success="handleLogoutSuccess"/>
 			<Unregister :token="token" />
 		</div>
 	</section>

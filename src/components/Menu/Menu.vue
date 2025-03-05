@@ -17,7 +17,7 @@
                 </ul>
             </nav>
 
-            <component :is="currentComponent"></component>
+            <component :is="currentComponent" @logout-success="handleLogout"></component>
         </div>
 
         <button v-if="!isAuthenticated" @click="continueWithoutLogin">Continuer sans se connecter</button>
