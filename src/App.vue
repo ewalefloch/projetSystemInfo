@@ -1,3 +1,4 @@
+
 <script setup>
 import Menu from './components/Menu/Menu.vue';
 </script>
@@ -32,7 +33,4 @@ nav a {
   text-decoration: none;
   font-weight: bold;
 }
-nav a:hover {
-  text-decoration: underline;
-}
-</style>
+</script>

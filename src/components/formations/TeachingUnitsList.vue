@@ -1,0 +1,57 @@
+<!-- src/components/TeachingUnitsList.vue -->
+<template>
+  <div>
+    <h1>Liste des UE</h1>
+    <router-link to="/teachingunits/new">Créer une UE</router-link>
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Obligatoire</th>
+        <th>Capacité</th>
+        <th>ID Formation</th>
+        <th>Details</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="unit in teachingUnits" :key="unit.id">
+        <td>{{ unit.id }}</td>
+        <td>{{ unit.name }}</td>
+        <td>{{ unit.isRequired ? 'Oui' : 'Non' }}</td>
+        <td>{{ unit.capacity }}</td>
+        <td>{{ unit.academicYearId }}</td>
+        <td>
+          <router-link :to="`/teachingunits/${unit.id}`">Voir</router-link>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+import { ref, onMounted } from 'vue';
+import {API_FORMATIONS} from "@/config.js";
+export default {
+  name: 'TeachingUnitsList',
+  setup() {
+    const teachingUnits = ref([]);
+
+    const fetchTeachingUnits = async () => {
+      try {
+        const response = await fetch(`${API_FORMATIONS}/teachingunits`);
+        teachingUnits.value = await response.json();
+      } catch (error) {
+        console.error('Erreur lors de la récupération des UE', error);
+      }
+    };
+
+    onMounted(() => {
+      fetchTeachingUnits();
+    });
+
+    return { teachingUnits };
+  }
+}
+</script>
