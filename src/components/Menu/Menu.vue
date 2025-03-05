@@ -2,7 +2,7 @@
 <template>
     <div class="container">
         <!-- Affichage de l'authentification si l'utilisateur n'est pas connecté -->
-        <Auth v-if="isAuthenticated" @login-success="handleLogin"/>
+        <Auth v-if="!isAuthenticated" @login-success="handleLogin"/>
         <div v-else>
             <nav>
                 <ul>
