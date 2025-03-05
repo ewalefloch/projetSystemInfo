@@ -2,6 +2,7 @@
 <template>
   <div>
     <h1>Liste des UE</h1>
+    <router-link to="/teachingunits/new">Créer une UE</router-link>
     <table>
       <thead>
       <tr>
@@ -10,6 +11,7 @@
         <th>Obligatoire</th>
         <th>Capacité</th>
         <th>ID Formation</th>
+        <th>Details</th>
       </tr>
       </thead>
       <tbody>
@@ -19,6 +21,9 @@
         <td>{{ unit.isRequired ? 'Oui' : 'Non' }}</td>
         <td>{{ unit.capacity }}</td>
         <td>{{ unit.academicYearId }}</td>
+        <td>
+          <router-link :to="`/teachingunits/${unit.id}`">Voir</router-link>
+        </td>
       </tr>
       </tbody>
     </table>

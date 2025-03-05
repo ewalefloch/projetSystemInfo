@@ -73,7 +73,6 @@ export default {
           method: 'DELETE'
         });
         if (response.ok) {
-          alert('Formation supprimée');
           router.push('/academicyears');
         }
       } catch (error) {

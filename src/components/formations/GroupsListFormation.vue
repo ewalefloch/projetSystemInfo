@@ -2,14 +2,12 @@
 <template>
   <div>
     <h1>Liste des groupes</h1>
-    <router-link to="/groups/new">Créer une Groupe</router-link>
     <table>
       <thead>
       <tr>
         <th>ID</th>
         <th>Nom</th>
         <th>ID Formation</th>
-        <th>Details</th>
       </tr>
       </thead>
       <tbody>
@@ -17,9 +15,6 @@
         <td>{{ group.id }}</td>
         <td>{{ group.name }}</td>
         <td>{{ group.academicYearId }}</td>
-        <td>
-          <router-link :to="`/groups/${group.id}`">Voir</router-link>
-        </td>
       </tr>
       </tbody>
     </table>
@@ -29,15 +24,16 @@
 <script>
 import { ref, onMounted } from 'vue';
 import {API_FORMATIONS} from "@/config.js";
-
+import {useRoute} from "vue-router";
 export default {
-  name: 'GroupsForm',
+  name: 'GroupsListFormation',
   setup() {
+    const route = useRoute();
     const groups = ref([]);
 
     const fetchGroups = async () => {
       try {
-        const response = await fetch(`${API_FORMATIONS}/groups`);
+        const response = await fetch(`${API_FORMATIONS}/academicyears/${route.params.id}/groups`);
         groups.value = await response.json();
       } catch (error) {
         console.error('Erreur lors de la récupération des groupes', error);

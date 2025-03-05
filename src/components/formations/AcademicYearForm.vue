@@ -1,7 +1,7 @@
 <!-- src/components/AcademicYearForm.vue -->
 <template>
   <div>
-    <h1>Créer une nouvelle formation</h1>
+    <h1>Créer un groupe</h1>
     <form @submit.prevent="createAcademicYear">
       <div>
         <label for="name">Nom :</label>

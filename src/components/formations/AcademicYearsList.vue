@@ -8,7 +8,9 @@
       <tr>
         <th>ID</th>
         <th>Nom</th>
-        <th>Actions</th>
+        <th>Details</th>
+        <th>Groupes</th>
+        <th>UE</th>
       </tr>
       </thead>
       <tbody>
@@ -18,15 +20,25 @@
         <td>
           <router-link :to="`/academicyears/${year.id}`">Voir</router-link>
         </td>
+        <td>
+          <router-link :to="`/academicyears/${year.id}/groups`">Voir</router-link>
+        </td>
+        <td>
+          <router-link :to="`/academicyears/${year.id}/teachingunits`">Voir</router-link>
+        </td>
       </tr>
       </tbody>
     </table>
+  </div>
+  <div>
+    <button @click="scrap">scrap</button>
   </div>
 </template>
 
 <script>
 import { ref, onMounted } from 'vue';
 import {API_FORMATIONS} from "@/config.js";
+import axios from "axios";
 export default {
   name: 'AcademicYearsList',
   setup() {
@@ -40,12 +52,19 @@ export default {
         console.error('Erreur lors de la récupération des formations', error);
       }
     };
-
+    const scrap = async () => {
+      try {
+        const response = axios.post(`${API_FORMATIONS}/academicyears/scraper`);
+        console.log(response);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des formations', error);
+      }
+    }
     onMounted(() => {
       fetchAcademicYears();
     });
 
-    return { academicYears };
+    return { academicYears, scrap };
   }
 }
 </script>

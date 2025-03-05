@@ -2,24 +2,25 @@
 <template>
   <div>
     <h1>Liste des groupes</h1>
-    <router-link to="/groups/new">Créer une Groupe</router-link>
     <table>
       <thead>
       <tr>
         <th>ID</th>
         <th>Nom</th>
+        <th>Requis</th>
+        <th>Capacité</th>
+        <th>ID Responsable</th>
         <th>ID Formation</th>
-        <th>Details</th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="group in groups" :key="group.id">
-        <td>{{ group.id }}</td>
-        <td>{{ group.name }}</td>
-        <td>{{ group.academicYearId }}</td>
-        <td>
-          <router-link :to="`/groups/${group.id}`">Voir</router-link>
-        </td>
+      <tr v-for="ue in ues" :key="ue.id">
+        <td>{{ ue.id }}</td>
+        <td>{{ ue.name }}</td>
+        <td>{{ ue.isRequired}}</td>
+        <td>{{ ue.capacity}}</td>
+        <td>{{ ue.responsibleId}}</td>
+        <td>{{ ue.academicYearId }}</td>
       </tr>
       </tbody>
     </table>
@@ -29,16 +30,17 @@
 <script>
 import { ref, onMounted } from 'vue';
 import {API_FORMATIONS} from "@/config.js";
-
+import {useRoute} from "vue-router";
 export default {
-  name: 'GroupsForm',
+  name: 'UeFormation',
   setup() {
-    const groups = ref([]);
+    const route = useRoute();
+    const ues = ref([]);
 
     const fetchGroups = async () => {
       try {
-        const response = await fetch(`${API_FORMATIONS}/groups`);
-        groups.value = await response.json();
+        const response = await fetch(`${API_FORMATIONS}/academicyears/${route.params.id}/teachingunits`);
+        ues.value = await response.json();
       } catch (error) {
         console.error('Erreur lors de la récupération des groupes', error);
       }
@@ -48,7 +50,7 @@ export default {
       fetchGroups();
     });
 
-    return { groups };
+    return { ues };
   }
 }
 </script>
