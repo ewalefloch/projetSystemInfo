@@ -1,4 +1,3 @@
-// src/components/ManagerList.vue
 <template>
   <div class="manager-list">
     <h2>Liste des responsables</h2>

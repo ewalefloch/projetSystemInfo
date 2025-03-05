@@ -15,10 +15,6 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
-
 <style>
 .container {
   max-width: 800px;
