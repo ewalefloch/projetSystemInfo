@@ -33,6 +33,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import {API_FORMATIONS} from "@/config.js";
 export default {
   name: 'AcademicYearDetail',
   setup() {
@@ -42,7 +43,7 @@ export default {
 
     const fetchAcademicYear = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/academicyears/${route.params.id}`);
+        const response = await fetch(`${API_FORMATIONS}/academicyears/${route.params.id}`);
         academicYear.value = await response.json();
       } catch (error) {
         console.error('Erreur lors de la récupération', error);
@@ -51,7 +52,7 @@ export default {
 
     const updateAcademicYear = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/academicyears/${route.params.id}`, {
+        const response = await fetch(`${API_FORMATIONS}/academicyears/${route.params.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -59,7 +60,7 @@ export default {
           body: JSON.stringify(academicYear.value)
         });
         if (response.ok) {
-          alert('Mise à jour réussie');
+          router.push('/academicyears');
         }
       } catch (error) {
         console.error('Erreur lors de la mise à jour', error);
@@ -68,7 +69,7 @@ export default {
 
     const deleteAcademicYear = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/academicyears/${route.params.id}`, {
+        const response = await fetch(`${API_FORMATIONS}/academicyears/${route.params.id}`, {
           method: 'DELETE'
         });
         if (response.ok) {

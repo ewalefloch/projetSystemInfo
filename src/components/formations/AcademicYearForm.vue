@@ -31,6 +31,7 @@
 <script>
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
+import {API_FORMATIONS} from "@/config.js";
 export default {
   name: 'AcademicYearForm',
   setup() {
@@ -45,7 +46,7 @@ export default {
 
     const createAcademicYear = async () => {
       try {
-        const response = await fetch('http://localhost:8080/academicyears', {
+        const response = await fetch(`${API_FORMATIONS}/academicyears`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

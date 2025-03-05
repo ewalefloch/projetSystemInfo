@@ -27,6 +27,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import {API_FORMATIONS} from "@/config.js";
 export default {
   name: 'TeachingUnitsList',
   setup() {
@@ -34,7 +35,7 @@ export default {
 
     const fetchTeachingUnits = async () => {
       try {
-        const response = await fetch('http://localhost:8080/teachingunits');
+        const response = await fetch(`${API_FORMATIONS}/teachingunits`);
         teachingUnits.value = await response.json();
       } catch (error) {
         console.error('Erreur lors de la récupération des UE', error);

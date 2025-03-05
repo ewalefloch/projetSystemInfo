@@ -1,39 +1,17 @@
-<script setup>
-import Message from './components/Messagerie/Message.vue';
-</script>
-
+<!-- src/App.vue -->
 <template>
-
-  <main>
-    <Message/>
-  </main>
+  <div id="app">
+    <nav>
+      <router-link to="/academicyears">Formations</router-link> |
+      <router-link to="/groups">Groupes</router-link> |
+      <router-link to="/teachingunits">UE</router-link>
+    </nav>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'App'
-};
+}
 </script>
-
-<style>
-.container {
-  max-width: 800px;
-  margin: auto;
-  font-family: Arial, sans-serif;
-}
-nav {
-  display: flex;
-  justify-content: space-around;
-  background-color: #007bff;
-  padding: 10px;
-  border-radius: 5px;
-}
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-nav a:hover {
-  text-decoration: underline;
-}
-</style>

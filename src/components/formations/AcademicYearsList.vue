@@ -26,6 +26,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import {API_FORMATIONS} from "@/config.js";
 export default {
   name: 'AcademicYearsList',
   setup() {
@@ -33,7 +34,7 @@ export default {
 
     const fetchAcademicYears = async () => {
       try {
-        const response = await fetch('http://localhost:8080/academicyears');
+        const response = await fetch(`${API_FORMATIONS}/academicyears`);
         academicYears.value = await response.json();
       } catch (error) {
         console.error('Erreur lors de la récupération des formations', error);
