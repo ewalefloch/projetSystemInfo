@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import FormInput from './FormInput.vue';
+const emit = defineEmits(['register-success']);
 
 const username = ref("");
 const usernameValidator = /^.+$/;
@@ -63,7 +64,7 @@ async function sendRegister() {
 	} else {
 		registerError.value = "";
 		document.cookie = `token=${jsonResult["token"]};max-age=${24 * 60 * 60}`;
-		this.$emit("login-success");
+		emit('register-success');
 	}
 }
 </script>

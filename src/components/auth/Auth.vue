@@ -2,14 +2,20 @@
 <script setup>
 import LoginForm from './LoginForm.vue';
 import RegisterForm from './RegisterForm.vue';
+const emit = defineEmits(['login-success']);
+
+function handleLoginSuccess() {
+    emit('login-success');
+}
+
 </script>
 
 <template>
 	<section>
 		<div>
-			<LoginForm />
+			<LoginForm @login-success="handleLoginSuccess"/>
 			<hr />
-			<RegisterForm />
+			<RegisterForm @register-success="handleLoginSuccess"/>
 		</div>
 	</section>
 </template>
