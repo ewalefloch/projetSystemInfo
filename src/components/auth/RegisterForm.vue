@@ -39,8 +39,32 @@ function onStudentChanged(newStudent) {
 }
 
 const formIncomplete = computed(() => {
-	return !usernameValid || !passwordValid || !confirmPasswordValid || !studentValid || (password.value !== confirmPassword.value);
+	return !usernameValid.value || !passwordValid.value || !confirmPasswordValid.value || !studentValid.value || (password.value != confirmPassword.value);
 });
+
+const registerError = ref("");
+
+async function sendRegister() {
+	const registerBody = {
+		username: username.value,
+		password: password.value,
+		student: student.value,
+	};
+
+	const response = await fetch("http://localhost:8080/auth/register", {
+		method: "POST",
+		headers: new Headers({ "Content-Type": "application/json" }),
+		body: JSON.stringify(registerBody),
+	});
+
+	const jsonResult = await response.json();
+	if (jsonResult["error"]) {
+		registerError.value = jsonResult["error"];
+	} else {
+		registerError.value = "";
+		document.cookie = `token=${jsonResult["token"]};max-age=${24 * 60 * 60}`;
+	}
+}
 </script>
 
 <template>
@@ -50,7 +74,10 @@ const formIncomplete = computed(() => {
 		<FormInput type="password" name="password" placeholder="Votre mot de passe..." label="Mot de passe" @value-changed="onPasswordChanged" />
 		<FormInput type="password" name="password-confirm" placeholder="Confirmez votre mot de passe..." label="Confirmation du mot de passe" @value-changed="onConfirmPasswordChanged" />
 		<FormInput type="text" name="student" placeholder="Votre numéro étudiant..." label="Numéro étudiant" @value-changed="onStudentChanged" />
-		<button type="submit" :disabled="formIncomplete">Se connecter</button>
+		<div class="submit">
+			<p v-if="registerError.length > 0" class="error">{{ registerError }}</p>
+			<button type="button" :disabled="formIncomplete" @click="sendRegister">Se connecter</button>
+		</div>
 	</form>
 </template>
 
@@ -65,6 +92,17 @@ form {
 
 h2 {
 	text-align: center;
+}
+
+.submit {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.error {
+	margin: 0;
+	color: #c00000;
 }
 
 button {
