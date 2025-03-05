@@ -13,9 +13,6 @@ import GroupsForm from "@/components/formations/GroupsForm.vue";
 import GroupsDetail from "@/components/formations/GroupsDetail.vue";
 import TeachingUnitsForm from "@/components/formations/TeachingUnitsForm.vue";
 import TeachingUnitsDetail from "@/components/formations/TeachingUnitsDetail.vue";
-import ManagerList from '../components/Manager/ManagerList.vue';
-import ManagerDetails from '../components/Manager/ManagerDetails.vue';
-import ManagerForm from '../components/Manager/ManagerForm.vue';
 
 const routes = [
     { path: '/managers', component: ManagerList },

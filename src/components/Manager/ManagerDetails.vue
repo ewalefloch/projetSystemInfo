@@ -18,7 +18,7 @@ export default {
     };
   },
   created() {
-    axios.get(`${API_MANAGER}/managers/${this.$route.params.id}`)
+    axios.get(`${API_MANAGER}/managers/${this.routes.params.id}`)
         .then(response => {
           this.manager = response.data;
         })
@@ -28,9 +28,9 @@ export default {
   },
   methods: {
     deleteManager() {
-      axios.delete(`${API_MANAGER}/managers/${this.$route.params.id}`)
+      axios.delete(`${API_MANAGER}/managers/${this.routes.params.id}`)
           .then(() => {
-            this.$router.push('/managers');
+            this.routes.push('/managers');
           })
           .catch(error => {
             console.error('Erreur lors de la suppression', error);

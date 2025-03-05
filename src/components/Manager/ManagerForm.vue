@@ -24,7 +24,7 @@ export default {
   created() {
     if (this.$route.params.id) {
       this.isEdit = true;
-      axios.get(`${API_MANAGER}/managers/${this.$route.params.id}`)
+      axios.get(`${API_MANAGER}/managers/${this.routes.params.id}`)
           .then(response => {
             this.manager = response.data;
           })
@@ -36,11 +36,11 @@ export default {
   methods: {
     submitForm() {
       const request = this.isEdit
-          ? axios.put(`${API_MANAGER}/managers/${this.$route.params.id}`, this.manager)
+          ? axios.put(`${API_MANAGER}/managers/${this.routes.params.id}`, this.manager)
           : axios.post(`${API_MANAGER}/managers`, this.manager,{ headers: { 'Content-Type': 'application/json' }});
 
       request.then(() => {
-        this.$router.push('/managers');
+        this.routes.push('/managers');
       }).catch(error => {
         console.error('Erreur lors de l\'enregistrement', error);
       });
