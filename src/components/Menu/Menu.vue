@@ -28,7 +28,7 @@
 import Auth from '../auth/Auth.vue';
 import Message from '../Messagerie/Message.vue';
 import Profile from '../profile/Profile.vue';
-
+import Manager from '../Manager/Manager.vue';
 export default {
     data() {
         return {
@@ -36,7 +36,8 @@ export default {
             currentComponent: Profile,
             menuItems: [
                 { label: "Profil", component: Profile },
-                { label: "Messagerie", component: Message }
+                { label: "Messagerie", component: Message },
+                {label: "Responsables", component: Manager}
             ]
         };
     },
@@ -51,7 +52,8 @@ export default {
     components: {
         Message,
         Profile,
-        Auth
+        Auth,
+        Manager
     }
 };
 </script>
