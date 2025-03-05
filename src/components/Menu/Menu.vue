@@ -6,9 +6,9 @@
         <div v-else>
             <nav>
                 <ul>
-                    <li 
-                        v-for="(item, index) in menuItems" 
-                        :key="index" 
+                    <li
+                        v-for="(item, index) in menuItems"
+                        :key="index"
                         @click="currentComponent = item.component"
                         :class="{ active: currentComponent === item.component }"
                     >
@@ -29,21 +29,23 @@ import Auth from '../auth/Auth.vue';
 import Message from '../Messagerie/Message.vue';
 import Profile from '../profile/Profile.vue';
 import Manager from '../Manager/Manager.vue';
+import Formation from '../formations/Formations.vue';
 export default {
     data() {
         return {
-            isAuthenticated: false, 
+            isAuthenticated: false,
             currentComponent: Profile,
             menuItems: [
                 { label: "Profil", component: Profile },
                 { label: "Messagerie", component: Message },
-                {label: "Responsables", component: Manager}
+                {label: "Responsables", component: Manager},
+                { label: "Formation", component: Formation },
             ]
         };
     },
     methods: {
         handleLogin() {
-            this.isAuthenticated = true; 
+            this.isAuthenticated = true;
         },
         continueWithoutLogin() {
             this.isAuthenticated = true;
