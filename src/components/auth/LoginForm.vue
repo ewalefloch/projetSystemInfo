@@ -44,6 +44,7 @@ async function sendLogin() {
 	} else {
 		loginError.value = "";
 		document.cookie = `token=${jsonResult["token"]};max-age=${24 * 60 * 60}`;
+		this.$emit("login-success");
 	}
 }
 </script>

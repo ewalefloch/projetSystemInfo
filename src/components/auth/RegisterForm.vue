@@ -63,6 +63,7 @@ async function sendRegister() {
 	} else {
 		registerError.value = "";
 		document.cookie = `token=${jsonResult["token"]};max-age=${24 * 60 * 60}`;
+		this.$emit("login-success");
 	}
 }
 </script>
