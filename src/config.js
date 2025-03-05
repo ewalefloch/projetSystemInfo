@@ -1,0 +1,1 @@
+export const API_MESSAGE_URL = "http://localhost:8085/api";

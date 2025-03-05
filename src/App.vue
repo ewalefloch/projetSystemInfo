@@ -1,20 +1,14 @@
 <script setup>
-import Auth from './components/auth/Auth.vue';
-import Profile from './components/profile/Profile.vue';
+import Message from './components/Messagerie/Message.vue';
 </script>
 
 <template>
-  <Profile />
+
+  <main>
+    <Message/>
+  </main>
 </template>
 
-<style>
-:root {
-	font-size: 16px;
-}
+<style scoped>
 
-body {
-	margin: 0;
-	padding: 0;
-	min-height: 100vh;
-}
 </style>
