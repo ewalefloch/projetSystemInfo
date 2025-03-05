@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import LoginForm from './LoginForm.vue';
 import RegisterForm from './RegisterForm.vue';

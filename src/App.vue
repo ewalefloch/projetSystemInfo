@@ -1,11 +1,11 @@
 <script setup>
-import Message from './components/Messagerie/Message.vue';
+import Menu from './components/Menu/Menu.vue';
 </script>
 
 <template>
 
   <main>
-    <Message/>
+    <Menu />
   </main>
 </template>
 
@@ -15,13 +15,8 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
-
 <style>
 .container {
-  max-width: 800px;
   margin: auto;
   font-family: Arial, sans-serif;
 }
